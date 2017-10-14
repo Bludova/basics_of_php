@@ -11,7 +11,7 @@ if (!file_exists($fontFile)) {
   exit;
 }
 
-$imBox = imagecreatefrompng( __DIR__. 'certificate.png');
+$imBox = imagecreatefrompng( 'certificate.png');
 
 imagefill($image, 0, 0, $backColor);
 imagecopy($image, $imBox, 10, 10, 0, 0, 578, 392);
