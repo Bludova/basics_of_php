@@ -2,11 +2,16 @@
   $nomTest = ($_GET);
   foreach($nomTest as $number => $k) {
   }
+$filelist = glob("*.json");
+$search = array_search($k, $filelist);
+if($search === false ){
+  http_response_code(404);
+  exit();
+}
   $json = file_get_contents(__DIR__ ."/$k");
   $data = json_decode($json, true);
   $issues_1 = $data["question_1"];
   $issues_2 = $data["question_2"];
-  $filelist = glob("*.json");
 
   array_unshift($filelist, "1");
   foreach($filelist as $i => $filename) {
@@ -66,7 +71,7 @@
      {
     ?> 
     <span class="correctly"> Вы ответили верно! </span><br>
-    <form action="certificate.php" method="GET">
+    <form action="./certificate.php" method="GET">
       <fieldset name='<?="$namesy;"?>'>
        <label>
          <p><b>Ваше имя:</b></p>
@@ -105,7 +110,7 @@
       }
       ?>
     <hr>
-    <a href="list.php">Выбрать тест! </a>
-    <a href="admin.php">Загрузить тест! </a>
+    <a href="./list.php">Выбрать тест! </a>
+    <a href="./admin.php">Загрузить тест! </a>
   </body>
 </html>
